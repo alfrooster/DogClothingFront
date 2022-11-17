@@ -14,7 +14,7 @@ export default function Addclothing(props) {
     name: "",
     type: "",
     price: "",
-    producer: "",
+    
   });
 
   const handleClickOpen = () => {
@@ -30,7 +30,7 @@ export default function Addclothing(props) {
   };
 
   const addClothes = () => {
-    props.saveclothes(clothes);
+    props.saveClothes(clothes);
     handleClose();
   };
 
