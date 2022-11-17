@@ -34,7 +34,17 @@ function ClothingList () {
                 }
             })
     }
-
+    const saveClothes = (clothes) => {
+        fetch("http://localhost:8080/api/clothes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(clothes),
+        })
+          .then((response) => fetchClothes())
+          .catch((err) => console.error(err));
+    }
     const [columnDefs, setColumnDefs] = useState([
         {field: 'name', sortable: true, filter: true},
         {field: 'producer.name', sortable: true, filter: true},
@@ -53,7 +63,7 @@ function ClothingList () {
 
     return(
         <>
-            <Addclothing />
+            <Addclothing saveClothes={saveClothes} />
             <div className="ag-theme-alpine" style={{height: '580px', width: '100%', margin: 'auto'}}>
                 <AgGridReact rowData={clothes} columnDefs={columnDefs}
                     animateRows={true} rowSelection='multiple'

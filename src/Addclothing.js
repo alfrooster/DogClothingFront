@@ -14,7 +14,7 @@ export default function Addclothing(props) {
     name: "",
     type: "",
     price: "",
-    
+    producer: "",
   });
 
   const handleClickOpen = () => {
