@@ -5,10 +5,13 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import { NativeSelect } from "@mui/material";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Addclothing(props) {
+  const [producerList, setProducerList] = useState([{name: "", id: ""}]);
+ 
   const [open, setOpen] = useState(false);
   const [clothes, setClothes] = useState({
     name: "",
@@ -33,6 +36,18 @@ export default function Addclothing(props) {
     props.saveClothes(clothes);
     handleClose();
   };
+
+  const fetchProducers = () => {
+    fetch("http://localhost:8080/api/producers")
+            .then(response => response.json())
+            .then(data => setProducerList(data))
+            
+  }
+  useEffect(() => {
+    console.log("ollaan useeffect-funktiossa");
+    fetchProducers();
+    console.log(producerList);
+}, []);
 
   return (
     <div>
@@ -71,14 +86,16 @@ export default function Addclothing(props) {
             fullWidth
             onChange={e => handleInputChange(e)}
           />
-          <TextField
-            margin="dense"
-            name="producer"
-            value={clothes.producer}
-            label="Producer"
-            fullWidth
-            onChange={e => handleInputChange(e)}
-          />
+          
+          <NativeSelect>
+            <option value="">Producer</option>
+            {producerList.map(producer => (
+                <option value="">{producer.name}</option>
+            ) )}
+            
+            
+
+          </NativeSelect>
           
         </DialogContent>
         <DialogActions>
