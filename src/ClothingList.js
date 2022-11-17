@@ -22,7 +22,7 @@ function ClothingList () {
         //fetch jolla haetaan tiedot vaatteista
         fetch("http://localhost:8080/api/clothes")
             .then(response => response.json())
-            .then(data => setClothes(data._embedded.clothes))
+            .then(data => setClothes(data))
     }
 
     const deleteClothing = (link) => {
@@ -37,7 +37,7 @@ function ClothingList () {
 
     const [columnDefs, setColumnDefs] = useState([
         {field: 'name', sortable: true, filter: true},
-        {field: 'producer', sortable: true, filter: true},
+        {field: 'producer.name', sortable: true, filter: true},
         {field: 'type', sortable: true, filter: true},
         {field: 'price', sortable: true, filter: true},
         {
