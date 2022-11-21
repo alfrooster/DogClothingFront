@@ -25,9 +25,9 @@ function ClothingList () {
             .then(data => setClothes(data))
     }
 
-    const deleteClothing = (link) => {
-        console.log("deletoitu");
-        fetch(link, {method: 'DELETE'})
+    const deleteClothing = (id) => {
+        console.log("deletoitu " + id);
+        fetch("http://localhost:8080/api/clothes/" + id , {method: 'DELETE'})
             .then(response => {
                 if(response.ok) {
                     fetchClothes();
@@ -54,7 +54,7 @@ function ClothingList () {
         {
             headerName: '',
             width: 100,
-            field: '_links.self.href',
+            field: 'id',
             cellRenderer: params =>
             <IconButton color="error" onClick={() => deleteClothing(params.value)}>
                 <DeleteIcon />
