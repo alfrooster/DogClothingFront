@@ -17,7 +17,13 @@ export default function Addclothing(props) {
     name: "",
     type: "",
     price: "",
-    producer: "",
+    producer: {
+      producerid: ""
+    },
+  });
+  const [producer, setProducer] = useState({
+    producerid: "",
+    name: ""
   });
 
   const handleClickOpen = () => {
@@ -30,6 +36,12 @@ export default function Addclothing(props) {
 
   const handleInputChange = (event) => {
     setClothes({ ...clothes, [event.target.name]: event.target.value });
+    console.log("ipnutchange: " + JSON.stringify(event.target.value));
+  };
+
+  const handleProducerChange = (event) => {
+    setClothes({ ...clothes, producer: {producerid: event.target.value} });
+    console.log("producerchange: " + event.target.value);
   };
 
   const addClothes = () => {
@@ -87,14 +99,12 @@ export default function Addclothing(props) {
             onChange={e => handleInputChange(e)}
           />
           
-          <NativeSelect>
-            <option value="">Producer</option>
+          <NativeSelect
+          onChange={e => handleProducerChange(e)}
+          name="producer">
             {producerList.map(producer => (
-                <option value="">{producer.name}</option>
+                <option value={producer.producerid}>{producer.name}</option>
             ) )}
-            
-            
-
           </NativeSelect>
           
         </DialogContent>

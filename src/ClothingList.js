@@ -44,6 +44,7 @@ function ClothingList () {
         })
           .then((response) => fetchClothes())
           .catch((err) => console.error(err));
+        console.log(JSON.stringify(clothes));
     }
     const [columnDefs, setColumnDefs] = useState([
         {field: 'name', sortable: true, filter: true},
