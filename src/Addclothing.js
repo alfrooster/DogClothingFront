@@ -21,10 +21,6 @@ export default function Addclothing(props) {
       producerid: ""
     },
   });
-  const [producer, setProducer] = useState({
-    producerid: "",
-    name: ""
-  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -46,6 +42,14 @@ export default function Addclothing(props) {
 
   const addClothes = () => {
     props.saveClothes(clothes);
+    setClothes({
+      name: "",
+      type: "",
+      price: "",
+      producer: {
+        producerid: ""
+      },
+    })
     handleClose();
   };
 
@@ -102,6 +106,7 @@ export default function Addclothing(props) {
           <NativeSelect
           onChange={e => handleProducerChange(e)}
           name="producer">
+            <option value="" selected disabled hidden>Select producer</option>
             {producerList.map(producer => (
                 <option value={producer.producerid}>{producer.name}</option>
             ) )}
