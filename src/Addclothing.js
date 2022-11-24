@@ -41,6 +41,7 @@ export default function Addclothing(props) {
   };
 
   const addClothes = () => {
+
     props.saveClothes(clothes);
     setClothes({
       name: "",
@@ -85,6 +86,7 @@ export default function Addclothing(props) {
             label="Name"
             fullWidth
             onChange={e => handleInputChange(e)}
+          
           />
           <TextField
             margin="dense"
@@ -101,15 +103,18 @@ export default function Addclothing(props) {
             label="Price"
             fullWidth
             onChange={e => handleInputChange(e)}
+
           />
           
           <NativeSelect
+          
           onChange={e => handleProducerChange(e)}
           name="producer">
             <option value="" selected disabled hidden>Select producer</option>
             {producerList.map(producer => (
                 <option value={producer.producerid}>{producer.name}</option>
             ) )}
+            
           </NativeSelect>
           
         </DialogContent>
