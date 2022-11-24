@@ -21,10 +21,7 @@ export default function Addclothing(props) {
       producerid: ""
     },
   });
-  const [producer, setProducer] = useState({
-    producerid: "",
-    name: ""
-  });
+  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,6 +42,7 @@ export default function Addclothing(props) {
   };
 
   const addClothes = () => {
+
     props.saveClothes(clothes);
     handleClose();
   };
@@ -81,6 +79,7 @@ export default function Addclothing(props) {
             label="Name"
             fullWidth
             onChange={e => handleInputChange(e)}
+          
           />
           <TextField
             margin="dense"
@@ -97,14 +96,17 @@ export default function Addclothing(props) {
             label="Price"
             fullWidth
             onChange={e => handleInputChange(e)}
+
           />
           
           <NativeSelect
+          
           onChange={e => handleProducerChange(e)}
           name="producer">
             {producerList.map(producer => (
                 <option value={producer.producerid}>{producer.name}</option>
             ) )}
+            
           </NativeSelect>
           
         </DialogContent>
