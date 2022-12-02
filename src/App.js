@@ -1,11 +1,10 @@
 import './App.css';
 import ClothingList from './ClothingList';
+import ProducerList from './ProducerList';
 import { Typography, Toolbar, AppBar } from '@mui/material';
 import { Tab } from "@mui/material";
 import { Tabs } from "@mui/material";
 import { useState } from 'react';
-
-
 
 function App() {
   const [tabs, setTabs] = useState("one");
@@ -20,23 +19,24 @@ function App() {
         <Toolbar>
           <Typography variant="h6">Welcome to PT-app</Typography>
         </Toolbar>
-        <Tabs value={tabs} onChange={handleChange}>
+      </AppBar>
+      <Tabs value={tabs} onChange={handleChange}>
           <Tab value="one" label="CLOTHINGS" />
           <Tab value="two" label="PRODUCERS" />
-          
-        </Tabs>
-      </AppBar>
+      </Tabs>
       {tabs === "one" && (
         <div>
           <ClothingList />
         </div>
       )}
+      {tabs === "two" && (
+        <div>
+          <ProducerList />
+        </div>
+      )}
       
-       </div>
-       );
-      }
-      
-  
-
+    </div>
+  );
+}
 
 export default App;
