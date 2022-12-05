@@ -3,13 +3,18 @@ import { AgGridReact } from 'ag-grid-react'
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Addclothing from './Addclothing'
+import CreateIcon from '@mui/icons-material/Create';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import EditClothing from './EditClothing';
 
 function ClothingList () {
     //luodaan tila, johon saadaan lista vaatteista
     const [clothes, setClothes] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [clothe, setClothe] = useState([])
+    
 
     //haetaan rest-rajapinnasta vaatteet
     useEffect(() => {
@@ -32,8 +37,15 @@ function ClothingList () {
                 if(response.ok) {
                     fetchClothes();
                 }
-            })
-    }
+            }) }
+
+
+    const handleClickOpen = (data) => {
+        setOpen(true);
+        setClothe(data);
+       console.log(data)
+      };
+
     const saveClothes = (clothes) => {
         fetch("http://localhost:8080/api/clothes", {
           method: "POST",
@@ -59,12 +71,19 @@ function ClothingList () {
             <IconButton color="error" onClick={() => deleteClothing(params.value)}>
                 <DeleteIcon />
             </IconButton>
-        }
-    ]);
+        }, { headerName: '',
+        width: 100,
+        field: 'id',
+        cellRenderer: params =>
+        <IconButton color="primary" onClick={() => handleClickOpen(params.data)}>
+            <CreateIcon />
+        </IconButton> }
+    ]) ;
 
     return(
         <>
             <Addclothing saveClothes={saveClothes} />
+            <EditClothing open={open} setOpen={setOpen}  data={clothe} clothes={clothes} fetchClothes={fetchClothes} />
             <div className="ag-theme-alpine" style={{height: '580px', width: '100%', margin: 'auto'}}>
                 <AgGridReact rowData={clothes} columnDefs={columnDefs}
                     animateRows={true} rowSelection='multiple'
@@ -72,6 +91,6 @@ function ClothingList () {
             </div>
         </>
     )
-}
+} 
 
 export default ClothingList;
