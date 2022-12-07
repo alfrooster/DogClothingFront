@@ -9,6 +9,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import EditClothing from './EditClothing';
 
+
 function ClothingList () {
     //luodaan tila, johon saadaan lista vaatteista
     const [clothes, setClothes] = useState([]);
@@ -44,6 +45,7 @@ function ClothingList () {
         setOpen(true);
         setClothe(data);
        console.log(data)
+       console.log("handleclickopen")
       };
 
     const saveClothes = (clothes) => {
@@ -75,7 +77,7 @@ function ClothingList () {
         width: 100,
         field: 'id',
         cellRenderer: params =>
-        <IconButton color="primary" onClick={() => handleClickOpen(params.value)}>
+        <IconButton color="primary" onClick={() => handleClickOpen(params.data)}>
             <CreateIcon />
         </IconButton> }
     ]) ;
@@ -83,7 +85,7 @@ function ClothingList () {
     return(
         <>
             <Addclothing saveClothes={saveClothes} />
-            <EditClothing open={open} setOpen={setOpen}  data={clothe} clothes={clothes} fetchClothes={fetchClothes} />
+            <EditClothing  open={open} setOpen={setOpen}  data={clothe} clothes={clothes} fetchClothes={fetchClothes}  />
             <div className="ag-theme-alpine" style={{height: '580px', width: '100%', margin: 'auto'}}>
                 <AgGridReact rowData={clothes} columnDefs={columnDefs}
                     animateRows={true} rowSelection='multiple'

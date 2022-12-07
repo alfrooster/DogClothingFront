@@ -14,8 +14,10 @@ const EditClothing = (props) => {
 
     //Tuotu valitun rivin vaatteet propsien kautta steittiin
     const [clothess, setClothes] = useState(props.data);
-    
 
+    
+    
+let effect = props.data;
     
     
       const handleClose = () => {
@@ -24,7 +26,7 @@ const EditClothing = (props) => {
     
       const handleInputChange = (event) => {
         setClothes({ ...clothess, [event.target.name]: event.target.value });
-        console.log("ipnutchange: " + JSON.stringify(event.target.value));
+        console.log("inputchange: " + JSON.stringify(event.target.value));
       };
     
       const handleProducerChange = (event) => {
@@ -34,21 +36,12 @@ const EditClothing = (props) => {
 
       const fetchClothes = props.fetchClothes;
     
-      let ID = props.data;
+      let ID = props.data.id;
 
       //Asetetaan uudet arvot ja sisällytetään id
       const addClothes = () => {
     console.log(props.data);
         updateClothes(clothess, ID);
-        setClothes({
-          id: props.data,
-          name: "",
-          type: "",
-          price: "",
-          producer: {
-            producerid: ""
-          },
-        })
         handleClose();
       };
     
@@ -72,11 +65,12 @@ const EditClothing = (props) => {
                 
       }
       useEffect(() => {
-        console.log("ollaan useeffect-funktiossa");
+        console.log("ollaan useeffect-funktiossa edit osiossa");
         setClothes(props.data);
         fetchProducers();
         console.log(producerList);
-    }, []);
+        console.log(clothess);
+    }, [effect]);
 
 
 
@@ -95,6 +89,7 @@ return(
             label="Name"
             fullWidth
             onChange={e => handleInputChange(e)}
+        
             
           
           />
@@ -122,7 +117,7 @@ return(
           
           onChange={e => handleProducerChange(e)}
           name="producer">
-            <option value="" selected disabled hidden>Select producer</option>
+            <option value=""  selected disabled hidden>Select producer</option>
             {producerList.map(producer => (
                 <option value={producer.producerid}>{producer.name}</option>
             ) )}
