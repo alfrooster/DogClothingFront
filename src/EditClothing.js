@@ -73,6 +73,7 @@ const EditClothing = (props) => {
       }
       useEffect(() => {
         console.log("ollaan useeffect-funktiossa");
+        setClothes(props.data);
         fetchProducers();
         console.log(producerList);
     }, []);
@@ -94,6 +95,7 @@ return(
             label="Name"
             fullWidth
             onChange={e => handleInputChange(e)}
+            
           
           />
           <TextField
@@ -103,6 +105,7 @@ return(
             label="Type"
             fullWidth
             onChange={e => handleInputChange(e)}
+            
           />
           <TextField
             margin="dense"
@@ -111,6 +114,7 @@ return(
             label="Price"
             fullWidth
             onChange={e => handleInputChange(e)}
+        
 
           />
           
