@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import ClothesByProducer from './ClothesByProducer';
 
 function ProducerList () {
     //luodaan tila, johon saadaan lista valmistajista
@@ -48,6 +49,13 @@ function ProducerList () {
     const [columnDefs, setColumnDefs] = useState([
         {field: 'producerid', sortable: true, filter: true},
         {field: 'name', sortable: true, filter: true},
+        {
+            headerName: '',
+            width: 200,
+            field: 'producerid',
+            cellRenderer: params =>
+            <ClothesByProducer id={params.value}/>
+        },
         {
             headerName: '',
             width: 100,

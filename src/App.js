@@ -21,7 +21,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <Tabs value={tabs} onChange={handleChange}>
-          <Tab value="one" label="CLOTHINGS" />
+          <Tab value="one" label="CLOTHES" />
           <Tab value="two" label="PRODUCERS" />
       </Tabs>
       {tabs === "one" && (

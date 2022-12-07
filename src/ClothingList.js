@@ -75,7 +75,7 @@ function ClothingList () {
         width: 100,
         field: 'id',
         cellRenderer: params =>
-        <IconButton color="primary" onClick={() => handleClickOpen(params.data)}>
+        <IconButton color="primary" onClick={() => handleClickOpen(params.value)}>
             <CreateIcon />
         </IconButton> }
     ]) ;

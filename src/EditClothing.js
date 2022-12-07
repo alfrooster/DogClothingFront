@@ -34,14 +34,14 @@ const EditClothing = (props) => {
 
       const fetchClothes = props.fetchClothes;
     
-      let ID = props.data.id;
+      let ID = props.data;
 
       //Asetetaan uudet arvot ja sisällytetään id
       const addClothes = () => {
-    console.log(props.data.id);
+    console.log(props.data);
         updateClothes(clothess, ID);
         setClothes({
-          id: props.data.id,
+          id: props.data,
           name: "",
           type: "",
           price: "",
